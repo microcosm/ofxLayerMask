@@ -4,11 +4,11 @@ Use an alpha mask to reveal a foreground layer against a background. Under the h
 
 ![An example usage](images/example.gif)
 
-Clone this addon and run the example, and you will see this animation running.
+Clone this addon and run the example, and you will see this animation running. What's happening is it's drawing a red grid in the background, a blue grid in the foreground, and animating a circle's size to mask the foreground against the background.
 
 Usage
 -----
-You can check out the example code which runs the simple animation above, but the basic pattern is this:
+You can check out the [example code](https://github.com/microcosm/ofxLayerMask/blob/master/example/src/ofApp.cpp) which runs the simple animation above, but the basic pattern is this:
 
 ```
 ofxLayerMask masker;
@@ -17,13 +17,13 @@ void ofApp::setup() {
     masker.setup(width, height);
 }
 
-void ofApp::updateAnim(){
+void ofApp::update(){
     masker.beginBackground();
     //Draw a background
     masker.endBackground();
     
     masker.beginMask();
-    //draw a mask
+    //Draw a mask
     masker.endMask();
     
     masker.beginForeground();
