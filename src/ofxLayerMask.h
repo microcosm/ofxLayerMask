@@ -10,9 +10,13 @@ public:
 
     int newLayerMask();
     void beginMask();
+    void beginMask(int _id);
     void endMask();
+    void endMask(int _id);
     void beginLayer();
+    void beginLayer(int _id);
     void endLayer();
+    void endLayer(int _id);
 
 private:
     void initFbo(ofFbo &fbo);

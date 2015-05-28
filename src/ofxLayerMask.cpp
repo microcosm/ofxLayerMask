@@ -28,16 +28,32 @@ void ofxLayerMask::beginMask() {
     masks.back().begin();
 }
 
+void ofxLayerMask::beginMask(int _id) {
+    masks.at(_id).begin();
+}
+
 void ofxLayerMask::endMask() {
     masks.back().end();
+}
+
+void ofxLayerMask::endMask(int _id) {
+    masks.at(_id).end();
 }
 
 void ofxLayerMask::beginLayer() {
     layers.back().begin();
 }
 
+void ofxLayerMask::beginLayer(int _id) {
+    layers.at(_id).begin();
+}
+
 void ofxLayerMask::endLayer() {
     layers.back().end();
+}
+
+void ofxLayerMask::endLayer(int _id) {
+    layers.at(_id).end();
 }
 
 void ofxLayerMask::initFbo(ofFbo &fbo) {
