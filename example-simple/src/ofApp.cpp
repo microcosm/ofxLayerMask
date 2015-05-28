@@ -18,22 +18,30 @@ void ofApp::update(){
 void ofApp::draw(){
     //Draw a background as normal
     ofBackground(ofColor::black);
-    ofTranslate(12, 12);
-    ofSetColor(ofColor::red);
+    ofTranslate(6, 6);
+    ofSetColor(ofColor::red, 90);
     for(int i = 0; i < width; i += 50) {
         for(int j = 0; j < height; j += 50) {
-            ofRect(i, j, 25, 25);
+            ofRect(i, j, 35, 35);
         }
+    }
+    ofSetColor(ofColor::wheat);
+    for(int i = 50; i < height; i+=50) {
+        ofDrawBitmapString("This is the background", 30, i);
     }
 
     //Draw the layer you'd like to mask
     masker.beginLayer();
-    ofTranslate(12, 12);
-    ofSetColor(ofColor::blue);
+    ofClear(0, 0, 0, 255);
+    ofSetColor(ofColor::blue, 160);
     for(int i = 0; i < width; i += 25) {
         for(int j = 0; j < height; j += 25) {
-            ofRect(i, j, 12, 12);
+            ofRect(i, j, 16, 16);
         }
+    }
+    ofSetColor(ofColor::wheat);
+    for(int i = 50; i < height; i+=50) {
+        ofDrawBitmapString("This is the masked layer", halfWidth, i);
     }
     masker.endLayer();
 
@@ -41,7 +49,7 @@ void ofApp::draw(){
     masker.beginMask();
     ofClear(0, 0, 0, 255);
     ofSetColor(ofColor::white);
-    diameter = ofMap(sin(ofGetFrameNum() * 0.01), -1, 1, 50, 170);
+    diameter = ofMap(sin(ofGetFrameNum() * 0.03), -1, 1, 30, 280);
     ofCircle(halfWidth, halfHeight, diameter);
     masker.endMask();
 
