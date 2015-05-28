@@ -24,29 +24,17 @@ void ofApp::draw(){
     ofBackground(ofColor::black);
     ofTranslate(6, 6);
     ofSetColor(ofColor::red, 90);
-    for(int i = 0; i < width; i += 50) {
-        for(int j = 0; j < height; j += 50) {
-            ofRect(i, j, 35, 35);
-        }
-    }
+    drawGrid(width, height, 50, 35);
     ofSetColor(ofColor::wheat);
-    for(int i = 50; i < height; i+=50) {
-        ofDrawBitmapString("This is the background", 30, i);
-    }
+    drawText("This is the background", 30, 50, height);
 
     //Draw layer #1
     masker.beginLayer(layer1);
     ofClear(0, 0, 0, 255);
     ofSetColor(ofColor::blue, 160);
-    for(int i = 0; i < width; i += 25) {
-        for(int j = 0; j < height; j += 25) {
-            ofRect(i, j, 16, 16);
-        }
-    }
+    drawGrid(width, height, 25, 16);
     ofSetColor(ofColor::wheat);
-    for(int i = 50; i < height; i+=50) {
-        ofDrawBitmapString("This is layer one", halfWidth, i);
-    }
+    drawText("This is layer one", halfWidth, 50, height);
     masker.endLayer(layer1);
 
     //Draw mask #1
@@ -60,15 +48,9 @@ void ofApp::draw(){
     masker.beginLayer(layer2);
     ofClear(0, 0, 0, 255);
     ofSetColor(ofColor::green, 100);
-    for(int i = 0; i < width; i += 35) {
-        for(int j = 0; j < height; j += 35) {
-            ofRect(i, j, 25, 25);
-        }
-    }
+    drawGrid(width, height, 35, 25);
     ofSetColor(ofColor::wheat);
-    for(int i = 50; i < height; i+=50) {
-        ofDrawBitmapString("And this is layer two", halfWidth, i);
-    }
+    drawText("And this is layer two", halfWidth, 50, height);
     masker.endLayer(layer2);
 
     //Draw mask #2
@@ -82,6 +64,20 @@ void ofApp::draw(){
 
     //Draw the combined result
     masker.draw();
+}
+
+void ofApp::drawGrid(int _width, int _height, float increment, float blockSize){
+    for(int i = 0; i < _width; i+=increment) {
+        for(int j = 0; j < _height; j+=increment) {
+            ofRect(i, j, blockSize, blockSize);
+        }
+    }
+}
+
+void ofApp::drawText(string text, int x, int marginY, int _height){
+    for(int i = marginY; i < _height; i+=marginY) {
+        ofDrawBitmapString(text, x, i);
+    }
 }
 
 float ofApp::animate(float from, float to){

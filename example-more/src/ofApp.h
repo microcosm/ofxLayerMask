@@ -9,6 +9,8 @@ public:
     void setup();
     void update();
     void draw();
+    void drawGrid(int _width, int _height, float increment, float blockSize);
+    void drawText(string text, int x, int marginY, int _height);
     float animate(float from, float to);
     
     void keyPressed(int key);
