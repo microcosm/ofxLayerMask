@@ -9,6 +9,7 @@ public:
     void setup();
     void update();
     void draw();
+    float animate(float from, float to);
     
     void keyPressed(int key);
     void keyReleased(int key);
@@ -22,6 +23,5 @@ public:
     
     ofxLayerMask masker;
     int width, height, halfWidth, halfHeight;
-    float diameter;
-    int layer1;
+    int layer1, layer2;
 };
