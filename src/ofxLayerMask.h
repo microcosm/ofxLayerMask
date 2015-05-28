@@ -23,5 +23,5 @@ private:
 
     int width, height;
     ofShader maskShader;
-    ofFbo background, mask, foreground, composite;
+    ofFbo background, mask, foreground;
 };

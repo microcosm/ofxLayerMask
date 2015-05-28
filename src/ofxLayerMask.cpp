@@ -8,23 +8,15 @@ void ofxLayerMask::setup(int _width, int _height) {
     setupFbo(background);
     setupFbo(mask);
     setupFbo(foreground);
-    setupFbo(composite);
 }
 
 void ofxLayerMask::draw() {
-    ofSetColor(255, 255, 255, 255);
-
-    composite.begin();
-    ofClear(0, 0, 0, 0);
-
+    ofSetColor(ofColor::white);
+    background.draw(0, 0);
     maskShader.begin();
     maskShader.setUniformTexture("maskTex", mask.getTextureReference(), 1);
     foreground.draw(0, 0);
     maskShader.end();
-    composite.end();
-
-    background.draw(0, 0);
-    composite.draw(0, 0);
 }
 
 void ofxLayerMask::beginBackground() {
