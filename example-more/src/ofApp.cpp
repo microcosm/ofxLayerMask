@@ -8,7 +8,7 @@ void ofApp::setup(){
     ofSetWindowShape(width, height);
     masker.setup(width, height);
 
-    //Init a new layer mask
+    //Init new layer masks
     layer1 = masker.newLayerMask();
     layer2 = masker.newLayerMask();
 
