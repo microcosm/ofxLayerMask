@@ -12,7 +12,12 @@ void ofApp::setup(){
 }
 
 void ofApp::update(){
-    masker.beginBackground();
+    
+}
+
+void ofApp::draw(){
+    //Draw a background as normal
+    ofBackground(ofColor::black);
     ofTranslate(12, 12);
     ofSetColor(ofColor::red);
     for(int i = 0; i < width; i += 50) {
@@ -20,16 +25,9 @@ void ofApp::update(){
             ofRect(i, j, 25, 25);
         }
     }
-    masker.endBackground();
-    
-    masker.beginMask();
-    ofClear(0, 0, 0, 255);
-    ofSetColor(ofColor::white);
-    diameter = ofMap(sin(ofGetFrameNum() * 0.01), -1, 1, 50, 170);
-    ofCircle(halfWidth, halfHeight, diameter);
-    masker.endMask();
-    
-    masker.beginForeground();
+
+    //Draw the layer you'd like to mask
+    masker.beginLayer();
     ofTranslate(12, 12);
     ofSetColor(ofColor::blue);
     for(int i = 0; i < width; i += 25) {
@@ -37,11 +35,18 @@ void ofApp::update(){
             ofRect(i, j, 12, 12);
         }
     }
-    masker.endForeground();
-}
+    masker.endLayer();
 
-void ofApp::draw(){
-    masker.draw();
+    //Draw the mask to apply to the layer
+    masker.beginMask();
+    ofClear(0, 0, 0, 255);
+    ofSetColor(ofColor::white);
+    diameter = ofMap(sin(ofGetFrameNum() * 0.01), -1, 1, 50, 170);
+    ofCircle(halfWidth, halfHeight, diameter);
+    masker.endMask();
+
+    //Draw the result
+    masker.drawLayer();
 }
 
 void ofApp::keyPressed(int key){

@@ -6,16 +6,13 @@ class ofxLayerMask {
 
 public:
     void setup(int _width, int _height);
-    void draw();
-
-    void beginBackground();
-    void endBackground();
+    void drawLayer();
 
     void beginMask();
     void endMask();
 
-    void beginForeground();
-    void endForeground();
+    void beginLayer();
+    void endLayer();
 
 private:
     void setupFbo(ofFbo &fbo);
@@ -23,5 +20,5 @@ private:
 
     int width, height;
     ofShader maskShader;
-    ofFbo background, mask, foreground;
+    ofFbo mask, foreground;
 };

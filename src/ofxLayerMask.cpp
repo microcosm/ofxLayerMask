@@ -5,26 +5,16 @@ void ofxLayerMask::setup(int _width, int _height) {
     height = _height;
     maskShader.load(shader("alphaMask"));
 
-    setupFbo(background);
     setupFbo(mask);
     setupFbo(foreground);
 }
 
-void ofxLayerMask::draw() {
+void ofxLayerMask::drawLayer() {
     ofSetColor(ofColor::white);
-    background.draw(0, 0);
     maskShader.begin();
     maskShader.setUniformTexture("maskTex", mask.getTextureReference(), 1);
     foreground.draw(0, 0);
     maskShader.end();
-}
-
-void ofxLayerMask::beginBackground() {
-    background.begin();
-}
-
-void ofxLayerMask::endBackground() {
-    background.end();
 }
 
 void ofxLayerMask::beginMask() {
@@ -35,11 +25,11 @@ void ofxLayerMask::endMask() {
     mask.end();
 }
 
-void ofxLayerMask::beginForeground() {
+void ofxLayerMask::beginLayer() {
     foreground.begin();
 }
 
-void ofxLayerMask::endForeground() {
+void ofxLayerMask::endLayer() {
     foreground.end();
 }
 
