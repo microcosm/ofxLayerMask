@@ -16,6 +16,12 @@ void ofxLayerMask::draw() {
     }
 }
 
+void ofxLayerMask::draw(int x, int y) {
+    ofTranslate(x, y);
+    draw();
+    ofTranslate(-x, -y);
+}
+
 int ofxLayerMask::newLayerMask() {
     masks.push_back(newFbo);
     initFbo(masks.back());

@@ -7,6 +7,7 @@ class ofxLayerMask {
 public:
     void setup(int _width, int _height);
     void draw();
+    void draw(int x, int y);
 
     int newLayerMask();
     void beginMask();
