@@ -8,6 +8,9 @@ void ofApp::setup(){
     ofSetWindowShape(width, height);
     masker.setup(width, height);
     
+    //Init a new layer mask
+    masker.newLayerMask();
+    
     ofSetCircleResolution(60);
 }
 
@@ -16,7 +19,7 @@ void ofApp::update(){
 }
 
 void ofApp::draw(){
-    //Draw a background as normal
+    //Draw a background
     ofBackground(ofColor::black);
     ofTranslate(6, 6);
     ofSetColor(ofColor::red, 90);
@@ -30,7 +33,7 @@ void ofApp::draw(){
         ofDrawBitmapString("This is the background", 30, i);
     }
 
-    //Draw the layer you'd like to mask
+    //Draw the layer
     masker.beginLayer();
     ofClear(0, 0, 0, 255);
     ofSetColor(ofColor::blue, 160);
@@ -45,7 +48,7 @@ void ofApp::draw(){
     }
     masker.endLayer();
 
-    //Draw the mask to apply to the layer
+    //Draw the mask
     masker.beginMask();
     ofClear(0, 0, 0, 255);
     ofSetColor(ofColor::white);
@@ -53,8 +56,8 @@ void ofApp::draw(){
     ofCircle(halfWidth, halfHeight, diameter);
     masker.endMask();
 
-    //Draw the result
-    masker.drawLayer();
+    //Draw the combined result
+    masker.draw();
 }
 
 void ofApp::keyPressed(int key){
@@ -86,7 +89,7 @@ void ofApp::windowResized(int w, int h){
 }
 
 void ofApp::gotMessage(ofMessage msg){
-
+    
 }
 
 void ofApp::dragEvent(ofDragInfo dragInfo){

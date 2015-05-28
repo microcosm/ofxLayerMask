@@ -4,36 +4,43 @@ void ofxLayerMask::setup(int _width, int _height) {
     width = _width;
     height = _height;
     maskShader.load(shader("alphaMask"));
-
-    setupFbo(mask);
-    setupFbo(foreground);
 }
 
-void ofxLayerMask::drawLayer() {
+void ofxLayerMask::draw() {
     ofSetColor(ofColor::white);
-    maskShader.begin();
-    maskShader.setUniformTexture("maskTex", mask.getTextureReference(), 1);
-    foreground.draw(0, 0);
-    maskShader.end();
+    for(int i = 0; i < layers.size(); i++) {
+        maskShader.begin();
+        maskShader.setUniformTexture("maskTex", masks.at(i).getTextureReference(), 1);
+        layers.at(i).draw(0, 0);
+        maskShader.end();
+    }
+}
+
+int ofxLayerMask::newLayerMask() {
+    masks.push_back(newFbo);
+    initFbo(masks.back());
+    layers.push_back(newFbo);
+    initFbo(layers.back());
+    return layers.size() - 1;
 }
 
 void ofxLayerMask::beginMask() {
-    mask.begin();
+    masks.back().begin();
 }
 
 void ofxLayerMask::endMask() {
-    mask.end();
+    masks.back().end();
 }
 
 void ofxLayerMask::beginLayer() {
-    foreground.begin();
+    layers.back().begin();
 }
 
 void ofxLayerMask::endLayer() {
-    foreground.end();
+    layers.back().end();
 }
 
-void ofxLayerMask::setupFbo(ofFbo &fbo) {
+void ofxLayerMask::initFbo(ofFbo &fbo) {
     fbo.allocate(width, height, GL_RGBA);
     fbo.begin();
     ofClear(0, 0, 0, 255);
