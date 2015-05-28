@@ -10,7 +10,7 @@ If you clone this repo to your addon directory and run the simple example, you w
 
 ![The simple example](images/example-simple.gif)
 
-The code follows this simple pattern. Just go ahead and draw whatever you like in the layer and the mask.
+The code follows this simple pattern. Just go ahead and draw whatever you like in the layer and the mask:
 
 ```
 ofxLayerMask masker;
