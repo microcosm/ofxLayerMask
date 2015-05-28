@@ -1,34 +1,35 @@
 ofxLayerMask
 ============
-Use an alpha mask to reveal a foreground layer against a background. Under the hood it uses frame buffer objects and shaders, but the addon handles all of that for you and lets you focus on drawing.
+This addon makes it easy to draw a graphical layer, and then hide parts of that layer with a mask. It operates on the same principles as [layer masking in Photoshop](http://www.wikihow.com/Add-a-Layer-Mask-in-Photoshop).
 
-![An example usage](images/example.gif)
+Under the hood it uses [frame buffer objects](http://openframeworks.cc/documentation/gl/ofFbo.html) and [shaders](http://openframeworks.cc/tutorials/graphics/shaders.html) - but the addon handles all of that for you and lets you focus on drawing.
 
-Clone this addon and run the example, and you will see this animation running. What's happening is it's drawing a red grid in the background, a blue grid in the foreground, and animating a circle's size to mask the foreground against the background.
+How to get started
+------------------
+If you clone this repo to your addon directory and run the simple example, you will see something like this:
 
-Usage
------
-You can check out the [example code](https://github.com/microcosm/ofxLayerMask/blob/master/example/src/ofApp.cpp) which runs the simple animation above, but the basic pattern is this:
+![The simple example](images/example-simple.gif)
+
+The code follows this simple pattern. Just go ahead and draw whatever you like in the layer and the mask.
 
 ```
 ofxLayerMask masker;
 
 void ofApp::setup() {
     masker.setup(width, height);
+    masker.newLayerMask();
 }
 
 void ofApp::update(){
-    masker.beginBackground();
-    //Draw a background
-    masker.endBackground();
-    
+    //Draw any background here
+
     masker.beginMask();
-    //Draw a mask
+    //Draw any mask you like
     masker.endMask();
     
-    masker.beginForeground();
-    //Draw a foreground
-    masker.endForeground();
+    masker.beginLayer();
+    //Draw any layer you like
+    masker.endLayer();
 }
 
 void ofApp::draw() {
@@ -36,4 +37,49 @@ void ofApp::draw() {
 }
 ```
 
+Working with multiple layers
+----------------------------
+You can add as many layers as you like. If you run the multi example you will see something like this:
+
+![The multi-layer example](images/example-more.gif)
+
+The pattern is very similar, with just a couple of differences:
+
+```
+ofxLayerMask masker;
+int layer1, layer2;
+
+void ofApp::setup() {
+    masker.setup(width, height);
+    layer1 = masker.newLayerMask();
+    layer2 = masker.newLayerMask();
+}
+
+void ofApp::update(){
+    //Draw any background here
+
+    masker.beginMask(layer1);
+    //Draw any mask you like
+    masker.endMask(layer1);
+    
+    masker.beginLayer(layer1);
+    //Draw any layer you like
+    masker.endLayer(layer1);
+
+    masker.beginMask(layer2);
+    //Draw any mask you like
+    masker.endMask(layer2);
+    
+    masker.beginLayer(layer2);
+    //Draw any layer you like
+    masker.endLayer(layer2);
+}
+
+void ofApp::draw() {
+    masker.draw();
+}
+```
+
+Dependencies
+------------
 The addon has no dependencies. Tested against [openFrameworks 0.8.4](http://openframeworks.cc/download/).
