@@ -22,7 +22,7 @@ void ofxLayerMask::draw(int x, int y) {
     ofTranslate(-x, -y);
 }
 
-int ofxLayerMask::newLayerMask() {
+int ofxLayerMask::newLayer() {
     masks.push_back(newFbo);
     initFbo(masks.back());
     layers.push_back(newFbo);

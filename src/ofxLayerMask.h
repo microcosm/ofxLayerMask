@@ -9,7 +9,7 @@ public:
     void draw();
     void draw(int x, int y);
 
-    int newLayerMask();
+    int newLayer();
     void beginMask();
     void beginMask(int _id);
     void endMask();

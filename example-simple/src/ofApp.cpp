@@ -8,8 +8,8 @@ void ofApp::setup(){
     ofSetWindowShape(width, height);
     masker.setup(width, height);
     
-    //Init a new layer mask
-    masker.newLayerMask();
+    //Init a new layer / mask combo
+    masker.newLayer();
     
     ofSetCircleResolution(60);
 }

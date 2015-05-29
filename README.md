@@ -17,7 +17,7 @@ ofxLayerMask masker;
 
 void ofApp::setup() {
     masker.setup(width, height);
-    masker.newLayerMask();
+    masker.newLayer();
 }
 
 void ofApp::update(){
@@ -51,8 +51,8 @@ int layer1, layer2;
 
 void ofApp::setup() {
     masker.setup(width, height);
-    layer1 = masker.newLayerMask();
-    layer2 = masker.newLayerMask();
+    layer1 = masker.newLayer();
+    layer2 = masker.newLayer();
 }
 
 void ofApp::update(){
