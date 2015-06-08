@@ -12,7 +12,7 @@ If you clone this repo to your addon directory and run the simple example, you w
 
 The code follows this simple pattern. Just go ahead and draw whatever you like in the layer and the mask:
 
-```
+```cpp
 ofxLayerMask masker;
 
 void ofApp::setup() {
@@ -45,7 +45,7 @@ You can add as many layers as you like. If you run the multi example you will se
 
 The pattern is very similar, with just a couple of differences:
 
-```
+```cpp
 ofxLayerMask masker;
 int layer1, layer2;
 
