@@ -9,16 +9,26 @@ void ofxLayerMask::setup(int _width, int _height) {
 void ofxLayerMask::draw() {
     ofSetColor(ofColor::white);
     for(int i = 0; i < layers.size(); i++) {
-        maskShader.begin();
-        maskShader.setUniformTexture("maskTex", masks.at(i).getTextureReference(), 1);
-        layers.at(i).draw(0, 0);
-        maskShader.end();
+        drawLayer(i);
     }
 }
 
 void ofxLayerMask::draw(int x, int y) {
     ofTranslate(x, y);
     draw();
+    ofTranslate(-x, -y);
+}
+
+void ofxLayerMask::drawLayer(int layerId) {
+    maskShader.begin();
+    maskShader.setUniformTexture("maskTex", masks.at(layerId).getTextureReference(), 1);
+    layers.at(layerId).draw(0, 0);
+    maskShader.end();
+}
+
+void ofxLayerMask::drawLayer(int layerId, int x, int y) {
+    ofTranslate(x, y);
+    drawLayer(layerId);
     ofTranslate(-x, -y);
 }
 

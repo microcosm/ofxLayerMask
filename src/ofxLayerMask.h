@@ -8,6 +8,8 @@ public:
     void setup(int _width, int _height);
     void draw();
     void draw(int x, int y);
+    void drawLayer(int layerId);
+    void drawLayer(int layerId, int x, int y);
 
     int newLayer();
     void beginMask();
