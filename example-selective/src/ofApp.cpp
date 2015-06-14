@@ -75,7 +75,7 @@ void ofApp::draw(){
     masker.drawOverlay();
 
     //Instructions
-    ofDrawBitmapString("Press 'p' to toggle layer previews\n\nPress 1 for layer 1\n\nPress 2 for layer 2\n\nAny other key for all layers", 30, 50);
+    ofDrawBitmapString("Press 'p' to toggle layer previews\n\nPress 1 for layer 1, press 2 for layer 2\n\nAny other key for all layers", 10, 20);
 }
 
 void ofApp::drawGrid(int _width, int _height, float increment, float blockSize){
