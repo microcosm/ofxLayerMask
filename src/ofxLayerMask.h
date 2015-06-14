@@ -6,6 +6,7 @@ class ofxLayerMask {
 
 public:
     void setup(int _width, int _height);
+    void toggleOverlay();
     void draw();
     void draw(int x, int y);
     void drawLayer(int layerId);
@@ -29,4 +30,5 @@ private:
     ofShader maskShader;
     vector<ofFbo> masks, layers;
     ofFbo newFbo;
+    bool overlayOn;
 };

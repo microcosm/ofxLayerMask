@@ -4,6 +4,11 @@ void ofxLayerMask::setup(int _width, int _height) {
     width = _width;
     height = _height;
     maskShader.load(shader("alphaMask"));
+    overlayOn = false;
+}
+
+void ofxLayerMask::toggleOverlay() {
+    overlayOn = !overlayOn;
 }
 
 void ofxLayerMask::draw() {
