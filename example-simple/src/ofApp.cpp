@@ -43,8 +43,9 @@ void ofApp::draw(){
     ofCircle(halfWidth, halfHeight, animate(30, 280));
     masker.endMask();
 
-    //Draw the combined result
+    //Draw the combined result (and overlay when enabled - see keyPressed below)
     masker.draw();
+    masker.drawOverlay();
 }
 
 void ofApp::drawGrid(int _width, int _height, float increment, float blockSize){
@@ -66,7 +67,9 @@ float ofApp::animate(float from, float to){
 }
 
 void ofApp::keyPressed(int key){
-    
+    if(key == 'p') {
+        masker.toggleOverlay();
+    }
 }
 
 void ofApp::keyReleased(int key){

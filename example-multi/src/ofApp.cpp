@@ -62,8 +62,9 @@ void ofApp::draw(){
     ofSetRectMode(OF_RECTMODE_CORNER);
     masker.endMask(layer2);
 
-    //Draw the combined result
+    //Draw the combined result (and overlay when enabled - see keyPressed below)
     masker.draw();
+    masker.drawOverlay();
 }
 
 void ofApp::drawGrid(int _width, int _height, float increment, float blockSize){
@@ -85,7 +86,9 @@ float ofApp::animate(float from, float to){
 }
 
 void ofApp::keyPressed(int key){
-    
+    if(key == 'p') {
+        masker.toggleOverlay();
+    }
 }
 
 void ofApp::keyReleased(int key){
