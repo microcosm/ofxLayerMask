@@ -37,10 +37,10 @@ private:
     ofFbo newFbo;
 
     bool overlayOn;
-    int overlayPadding, halfPadding, doublePadding, triplePadding;
+    int overlayPadding, doublePadding, triplePadding, quadruplePadding;
     int overlayMargin;
     int overlayWidth, overlayHeight;
-    int thumbWidth, thumbHeight, halfThumbWidth, halfThumbHeight, doubleThumbWidth;
+    int thumbWidth, thumbHeight, halfThumbHeight, doubleThumbWidth, tripleThumbWidth;
     int textAreaWidth;
     int x, y;
 };
