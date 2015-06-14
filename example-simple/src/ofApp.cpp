@@ -67,7 +67,7 @@ float ofApp::animate(float from, float to){
 }
 
 void ofApp::keyPressed(int key){
-    if(key == 'p') {
+    if(key == 'o') {
         masker.toggleOverlay();
     }
 }
