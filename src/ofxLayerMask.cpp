@@ -12,31 +12,27 @@ void ofxLayerMask::toggleOverlay() {
 }
 
 void ofxLayerMask::draw() {
+    draw(0, 0);
+}
+
+void ofxLayerMask::draw(int x, int y) {
     ofSetColor(ofColor::white);
     for(int i = 0; i < layers.size(); i++) {
-        drawLayer(i);
+        drawLayer(i, x, y);
     }
     drawOverlay();
 }
 
-void ofxLayerMask::draw(int x, int y) {
-    ofTranslate(x, y);
-    draw();
-    ofTranslate(-x, -y);
-}
-
 void ofxLayerMask::drawLayer(int layerId) {
-    maskShader.begin();
-    maskShader.setUniformTexture("maskTex", masks.at(layerId).getTextureReference(), 1);
-    layers.at(layerId).draw(0, 0);
-    maskShader.end();
-    drawOverlay();
+    drawLayer(layerId, 0, 0);
 }
 
 void ofxLayerMask::drawLayer(int layerId, int x, int y) {
-    ofTranslate(x, y);
-    drawLayer(layerId);
-    ofTranslate(-x, -y);
+    maskShader.begin();
+    maskShader.setUniformTexture("maskTex", masks.at(layerId).getTextureReference(), 1);
+    layers.at(layerId).draw(x, y);
+    maskShader.end();
+    drawOverlay();
 }
 
 void ofxLayerMask::drawOverlay() {
