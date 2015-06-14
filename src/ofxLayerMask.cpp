@@ -6,12 +6,16 @@ void ofxLayerMask::setup(int _width, int _height) {
     maskShader.load(shader("alphaMask"));
     overlayOn = false;
     overlayPadding = 20;
+    halfPadding = overlayPadding * 0.5;
     doublePadding = overlayPadding * 2;
+    triplePadding = overlayPadding * 3;
     overlayMargin = 20;
     overlayWidth = 100;
     textAreaWidth = 100;
     overlayHeight = 100;
     thumbWidth = 100;
+    halfThumbWidth = thumbWidth * 0.5;
+    doubleThumbWidth = thumbWidth * 2;
     thumbHeight = 100;
     halfThumbHeight = thumbHeight * 0.5;
 }
@@ -57,10 +61,10 @@ void ofxLayerMask::drawOverlay() {
         }
 
         //Draw overlay panel
-        x = ofGetWidth() - overlayWidth - textAreaWidth - doublePadding - overlayMargin;
+        x = ofGetWidth() - doubleThumbWidth - textAreaWidth - triplePadding - overlayMargin;
         y = ofGetHeight() - overlayHeight - doublePadding - overlayMargin;
-        drawDebugBox(x, y, overlayWidth + + textAreaWidth + doublePadding, overlayHeight + doublePadding);
-
+        drawDebugBox(x, y, doubleThumbWidth + textAreaWidth + triplePadding, overlayHeight + doublePadding);
+        
         //Draw layers
         x += overlayPadding;
         y += overlayPadding;
@@ -68,14 +72,16 @@ void ofxLayerMask::drawOverlay() {
             ofDrawBitmapString("Layer " + ofToString(i + 1), x, y + halfThumbHeight + 4);
             drawDebugBox(x - 1 + textAreaWidth, y - 1, thumbWidth + 2, thumbHeight + 2, ofColor(255, 255, 255, 150));
             drawLayer(i, x + textAreaWidth, y, thumbWidth, thumbHeight);
+            drawDebugBox(x - 1 + textAreaWidth + thumbWidth + overlayPadding, y - 1, thumbWidth + 2, thumbHeight + 2, ofColor(255, 255, 255, 150));
+            drawLayer(i, x + textAreaWidth + thumbWidth + overlayPadding, y, thumbWidth, thumbHeight);
             y += thumbHeight + overlayPadding;
         }
 
         //Draw composite thumbnail
         if(layers.size() > 1) {
             ofDrawBitmapString("Composite", x, y + halfThumbHeight + 4);
-            drawDebugBox(x - 1 + textAreaWidth, y - 1, thumbWidth + 2, thumbHeight + 2, ofColor(255, 255, 255, 150));
-            draw(x + textAreaWidth, y, thumbWidth, thumbHeight);
+            drawDebugBox(x - 1 + textAreaWidth + halfThumbWidth + halfPadding, y - 1, thumbWidth + 2, thumbHeight + 2, ofColor(255, 255, 255, 150));
+            draw(x + textAreaWidth + halfThumbWidth + halfPadding, y, thumbWidth, thumbHeight);
         }
     }
 }
