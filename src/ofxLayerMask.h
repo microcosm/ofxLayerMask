@@ -11,6 +11,7 @@ public:
     void draw(int x, int y);
     void drawLayer(int layerId);
     void drawLayer(int layerId, int x, int y);
+    void drawOverlay();
 
     int newLayer();
     void beginMask();
@@ -25,6 +26,7 @@ public:
 private:
     void initFbo(ofFbo &fbo);
     string shader(string name);
+    void drawDebugBox(int x, int y, int width, int height, ofColor color=ofColor(0, 0, 0, 150));
 
     int width, height;
     ofShader maskShader;

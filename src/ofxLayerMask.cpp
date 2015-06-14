@@ -16,6 +16,7 @@ void ofxLayerMask::draw() {
     for(int i = 0; i < layers.size(); i++) {
         drawLayer(i);
     }
+    drawOverlay();
 }
 
 void ofxLayerMask::draw(int x, int y) {
@@ -29,12 +30,17 @@ void ofxLayerMask::drawLayer(int layerId) {
     maskShader.setUniformTexture("maskTex", masks.at(layerId).getTextureReference(), 1);
     layers.at(layerId).draw(0, 0);
     maskShader.end();
+    drawOverlay();
 }
 
 void ofxLayerMask::drawLayer(int layerId, int x, int y) {
     ofTranslate(x, y);
     drawLayer(layerId);
     ofTranslate(-x, -y);
+}
+
+void ofxLayerMask::drawOverlay() {
+    drawDebugBox(ofGetWidth() - 120, ofGetHeight() - 120, 100, 100);
 }
 
 int ofxLayerMask::newLayer() {
@@ -95,4 +101,15 @@ string ofxLayerMask::shader(string name) {
         return shaderPath + "_GL2";
     }
 #endif
+}
+
+void ofxLayerMask::drawDebugBox(int x, int y, int width, int height, ofColor color) {
+    ofSetLineWidth(1);
+    ofSetColor(color);
+    ofFill();
+    ofRect(x, y, width, height);
+    ofSetColor(ofColor::white);
+    ofNoFill();
+    ofRect(x, y, width, height);
+    ofFill();
 }
