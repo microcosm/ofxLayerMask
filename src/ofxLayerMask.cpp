@@ -50,7 +50,9 @@ void ofxLayerMask::drawLayer(int layerId, int x, int y, int _width, int _height)
 
 void ofxLayerMask::drawOverlay() {
     if(overlayOn) {
-        overlayHeight = 100 * (layers.size() + 1) + (overlayPadding * layers.size());
+        if(layers.size() > 1) {
+            overlayHeight = 100 * (layers.size() + 1) + (overlayPadding * layers.size());
+        }
 
         //Draw overlay panel
         x = ofGetWidth() - overlayWidth - doublePadding - overlayMargin;
@@ -67,8 +69,10 @@ void ofxLayerMask::drawOverlay() {
         }
 
         //Draw composite thumbnail
-        drawDebugBox(x - 1, y - 1, thumbWidth + 2, thumbHeight + 2, ofColor(255, 255, 255, 150));
-        draw(x, y, thumbWidth, thumbHeight);
+        if(layers.size() > 1) {
+            drawDebugBox(x - 1, y - 1, thumbWidth + 2, thumbHeight + 2, ofColor(255, 255, 255, 150));
+            draw(x, y, thumbWidth, thumbHeight);
+        }
     }
 }
 
