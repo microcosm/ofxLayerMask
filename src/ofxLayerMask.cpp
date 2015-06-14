@@ -47,11 +47,19 @@ void ofxLayerMask::drawLayer(int layerId, int x, int y) {
     drawLayer(layerId, x, y, width, height);
 }
 
-void ofxLayerMask::drawLayer(int layerId, int x, int y, int _width, int _height) {
-    maskShader.begin();
-    maskShader.setUniformTexture("maskTex", masks.at(layerId).getTextureReference(), 1);
-    layers.at(layerId).draw(x, y, _width, _height);
-    maskShader.end();
+void ofxLayerMask::drawLayer(int layerId, int x, int y, int _width, int _height, bool masked) {
+    if(masked) {
+        maskShader.begin();
+        maskShader.setUniformTexture("maskTex", masks.at(layerId).getTextureReference(), 1);
+        layers.at(layerId).draw(x, y, _width, _height);
+        maskShader.end();
+    } else {
+        layers.at(layerId).draw(x, y, _width, _height);
+    }
+}
+
+void ofxLayerMask::drawMask(int maskId, int x, int y, int _width, int _height) {
+    masks.at(maskId).draw(x, y, _width, _height);
 }
 
 void ofxLayerMask::drawOverlay() {
@@ -71,9 +79,9 @@ void ofxLayerMask::drawOverlay() {
         for(int i = 0; i < layers.size(); i++) {
             ofDrawBitmapString("Layer " + ofToString(i + 1), x, y + halfThumbHeight + 4);
             drawDebugBox(x - 1 + textAreaWidth, y - 1, thumbWidth + 2, thumbHeight + 2, ofColor(255, 255, 255, 150));
-            drawLayer(i, x + textAreaWidth, y, thumbWidth, thumbHeight);
+            drawLayer(i, x + textAreaWidth, y, thumbWidth, thumbHeight, false);
             drawDebugBox(x - 1 + textAreaWidth + thumbWidth + overlayPadding, y - 1, thumbWidth + 2, thumbHeight + 2, ofColor(255, 255, 255, 150));
-            drawLayer(i, x + textAreaWidth + thumbWidth + overlayPadding, y, thumbWidth, thumbHeight);
+            drawMask(i, x + textAreaWidth + thumbWidth + overlayPadding, y, thumbWidth, thumbHeight);
             y += thumbHeight + overlayPadding;
         }
 
