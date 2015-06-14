@@ -69,6 +69,8 @@ void ofApp::draw(){
         masker.draw();
     }
 
+    masker.drawOverlay();
+
     //Instructions
     ofDrawBitmapString("Press 1 for layer 1\n\nPress 2 for layer 2\n\nAny other key for all layers", 30, 50);
 }

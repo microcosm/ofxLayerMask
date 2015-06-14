@@ -9,8 +9,10 @@ public:
     void toggleOverlay();
     void draw();
     void draw(int x, int y);
+    void draw(int x, int y, int _width, int _height);
     void drawLayer(int layerId);
     void drawLayer(int layerId, int x, int y);
+    void drawLayer(int layerId, int x, int y, int _width, int _height);
     void drawOverlay();
 
     int newLayer();

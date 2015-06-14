@@ -16,11 +16,14 @@ void ofxLayerMask::draw() {
 }
 
 void ofxLayerMask::draw(int x, int y) {
+    draw(x, y, width, height);
+}
+
+void ofxLayerMask::draw(int x, int y, int _width, int _height) {
     ofSetColor(ofColor::white);
     for(int i = 0; i < layers.size(); i++) {
-        drawLayer(i, x, y);
+        drawLayer(i, x, y, _width, _height);
     }
-    drawOverlay();
 }
 
 void ofxLayerMask::drawLayer(int layerId) {
@@ -28,15 +31,27 @@ void ofxLayerMask::drawLayer(int layerId) {
 }
 
 void ofxLayerMask::drawLayer(int layerId, int x, int y) {
+    drawLayer(layerId, x, y, width, height);
+}
+
+void ofxLayerMask::drawLayer(int layerId, int x, int y, int _width, int _height) {
     maskShader.begin();
     maskShader.setUniformTexture("maskTex", masks.at(layerId).getTextureReference(), 1);
-    layers.at(layerId).draw(x, y);
+    layers.at(layerId).draw(x, y, _width, _height);
     maskShader.end();
-    drawOverlay();
 }
 
 void ofxLayerMask::drawOverlay() {
-    drawDebugBox(ofGetWidth() - 120, ofGetHeight() - 120, 100, 100);
+    int padding = 20;
+    int doublePadding = padding * 2;
+    int margin = 20;
+    int width = 100;
+    int height = 100;
+    int x = ofGetWidth() - width - doublePadding - margin;
+    int y = ofGetHeight() - height - doublePadding - margin;
+    drawDebugBox(x, y, width + doublePadding, height + doublePadding);
+    drawDebugBox(x + padding - 1, y + padding - 1, width + 2, height + 2, ofColor(255, 255, 255, 150));
+    draw(x + padding, y + padding, width, height);
 }
 
 int ofxLayerMask::newLayer() {
