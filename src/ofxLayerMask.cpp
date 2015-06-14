@@ -49,25 +49,27 @@ void ofxLayerMask::drawLayer(int layerId, int x, int y, int _width, int _height)
 }
 
 void ofxLayerMask::drawOverlay() {
-    overlayHeight = 100 * (layers.size() + 1) + (overlayPadding * layers.size());
+    if(overlayOn) {
+        overlayHeight = 100 * (layers.size() + 1) + (overlayPadding * layers.size());
 
-    //Draw overlay panel
-    x = ofGetWidth() - overlayWidth - doublePadding - overlayMargin;
-    y = ofGetHeight() - overlayHeight - doublePadding - overlayMargin;
-    drawDebugBox(x, y, overlayWidth + doublePadding, overlayHeight + doublePadding);
+        //Draw overlay panel
+        x = ofGetWidth() - overlayWidth - doublePadding - overlayMargin;
+        y = ofGetHeight() - overlayHeight - doublePadding - overlayMargin;
+        drawDebugBox(x, y, overlayWidth + doublePadding, overlayHeight + doublePadding);
 
-    //Draw layers
-    x += overlayPadding;
-    y += overlayPadding;
-    for(int i = 0; i < layers.size(); i++) {
+        //Draw layers
+        x += overlayPadding;
+        y += overlayPadding;
+        for(int i = 0; i < layers.size(); i++) {
+            drawDebugBox(x - 1, y - 1, thumbWidth + 2, thumbHeight + 2, ofColor(255, 255, 255, 150));
+            drawLayer(i, x, y, thumbWidth, thumbHeight);
+            y += thumbHeight + overlayPadding;
+        }
+
+        //Draw composite thumbnail
         drawDebugBox(x - 1, y - 1, thumbWidth + 2, thumbHeight + 2, ofColor(255, 255, 255, 150));
-        drawLayer(i, x, y, thumbWidth, thumbHeight);
-        y += thumbHeight + overlayPadding;
+        draw(x, y, thumbWidth, thumbHeight);
     }
-
-    //Draw composite thumbnail
-    drawDebugBox(x - 1, y - 1, thumbWidth + 2, thumbHeight + 2, ofColor(255, 255, 255, 150));
-    draw(x, y, thumbWidth, thumbHeight);
 }
 
 int ofxLayerMask::newLayer() {

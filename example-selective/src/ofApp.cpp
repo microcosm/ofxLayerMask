@@ -8,6 +8,9 @@ void ofApp::setup(){
     ofSetWindowShape(width, height);
     masker.setup(width, height);
 
+    //Switch overlay on
+    masker.toggleOverlay();
+
     //Init new layers
     layer1 = masker.newLayer();
     layer2 = masker.newLayer();
