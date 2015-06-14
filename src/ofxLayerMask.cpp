@@ -4,24 +4,16 @@ void ofxLayerMask::setup(int _width, int _height) {
     width = _width;
     height = _height;
     maskShader.load(shader("alphaMask"));
-    overlayOn = false;
-    overlayPadding = 20;
-    doublePadding = overlayPadding * 2;
-    triplePadding = overlayPadding * 3;
-    quadruplePadding = overlayPadding * 4;
-    overlayMargin = 20;
-    overlayWidth = 100;
-    textAreaWidth = 100;
-    overlayHeight = 100;
-    thumbWidth = 100;
-    doubleThumbWidth = thumbWidth * 2;
-    tripleThumbWidth = thumbWidth * 3;
-    thumbHeight = 100;
-    halfThumbHeight = thumbHeight * 0.5;
+    setOverlayThumbSize(86);
 }
 
 void ofxLayerMask::toggleOverlay() {
     overlayOn = !overlayOn;
+}
+
+void ofxLayerMask::setOverlayThumbSize(int _thumbSize) {
+    thumbSize = _thumbSize;
+    initOverlay();
 }
 
 void ofxLayerMask::draw() {
@@ -64,7 +56,7 @@ void ofxLayerMask::drawMask(int maskId, int x, int y, int _width, int _height) {
 
 void ofxLayerMask::drawOverlay() {
     if(overlayOn) {
-        overlayHeight = 100 * (layers.size() + 1) + (overlayPadding * layers.size());
+        overlayHeight = thumbSize * (layers.size() + 1) + (overlayPadding * layers.size());
 
         //Draw overlay panel
         x = ofGetWidth() - tripleThumbWidth - textAreaWidth - quadruplePadding - overlayMargin;
@@ -130,6 +122,23 @@ void ofxLayerMask::endLayer() {
 
 void ofxLayerMask::endLayer(int _id) {
     layers.at(_id).end();
+}
+
+void ofxLayerMask::initOverlay() {
+    overlayOn = false;
+    overlayPadding = 20;
+    doublePadding = overlayPadding * 2;
+    triplePadding = overlayPadding * 3;
+    quadruplePadding = overlayPadding * 4;
+    overlayMargin = 20;
+    overlayWidth = thumbSize;
+    textAreaWidth = 80;
+    overlayHeight = thumbSize;
+    thumbWidth = thumbSize;
+    doubleThumbWidth = thumbWidth * 2;
+    tripleThumbWidth = thumbWidth * 3;
+    thumbHeight = thumbSize;
+    halfThumbHeight = thumbHeight * 0.5;
 }
 
 void ofxLayerMask::initFbo(ofFbo &fbo) {

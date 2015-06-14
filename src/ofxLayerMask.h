@@ -7,6 +7,7 @@ class ofxLayerMask {
 public:
     void setup(int _width, int _height);
     void toggleOverlay();
+    void setOverlayThumbSize(int _thumbSize);
     void draw();
     void draw(int x, int y);
     void draw(int x, int y, int _width, int _height);
@@ -27,6 +28,7 @@ public:
     void endLayer(int _id);
 
 private:
+    void initOverlay();
     void initFbo(ofFbo &fbo);
     string shader(string name);
     void drawDebugBox(int x, int y, int width, int height, ofColor color=ofColor(0, 0, 0, 150));
@@ -37,6 +39,7 @@ private:
     ofFbo newFbo;
 
     bool overlayOn;
+    int thumbSize;
     int overlayPadding, doublePadding, triplePadding, quadruplePadding;
     int overlayMargin;
     int overlayWidth, overlayHeight;
