@@ -34,5 +34,9 @@ private:
     ofShader maskShader;
     vector<ofFbo> masks, layers;
     ofFbo newFbo;
+
     bool overlayOn;
+    int overlayPadding, doublePadding, overlayMargin;
+    int overlayWidth, overlayHeight, thumbWidth, thumbHeight;
+    int x, y;
 };
