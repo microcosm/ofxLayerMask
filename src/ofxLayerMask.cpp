@@ -9,9 +9,11 @@ void ofxLayerMask::setup(int _width, int _height) {
     doublePadding = overlayPadding * 2;
     overlayMargin = 20;
     overlayWidth = 100;
+    textAreaWidth = 100;
     overlayHeight = 100;
     thumbWidth = 100;
     thumbHeight = 100;
+    halfThumbHeight = thumbHeight * 0.5;
 }
 
 void ofxLayerMask::toggleOverlay() {
@@ -55,23 +57,25 @@ void ofxLayerMask::drawOverlay() {
         }
 
         //Draw overlay panel
-        x = ofGetWidth() - overlayWidth - doublePadding - overlayMargin;
+        x = ofGetWidth() - overlayWidth - textAreaWidth - doublePadding - overlayMargin;
         y = ofGetHeight() - overlayHeight - doublePadding - overlayMargin;
-        drawDebugBox(x, y, overlayWidth + doublePadding, overlayHeight + doublePadding);
+        drawDebugBox(x, y, overlayWidth + + textAreaWidth + doublePadding, overlayHeight + doublePadding);
 
         //Draw layers
         x += overlayPadding;
         y += overlayPadding;
         for(int i = 0; i < layers.size(); i++) {
-            drawDebugBox(x - 1, y - 1, thumbWidth + 2, thumbHeight + 2, ofColor(255, 255, 255, 150));
-            drawLayer(i, x, y, thumbWidth, thumbHeight);
+            ofDrawBitmapString("Layer " + ofToString(i + 1), x, y + halfThumbHeight + 4);
+            drawDebugBox(x - 1 + textAreaWidth, y - 1, thumbWidth + 2, thumbHeight + 2, ofColor(255, 255, 255, 150));
+            drawLayer(i, x + textAreaWidth, y, thumbWidth, thumbHeight);
             y += thumbHeight + overlayPadding;
         }
 
         //Draw composite thumbnail
         if(layers.size() > 1) {
-            drawDebugBox(x - 1, y - 1, thumbWidth + 2, thumbHeight + 2, ofColor(255, 255, 255, 150));
-            draw(x, y, thumbWidth, thumbHeight);
+            ofDrawBitmapString("Composite", x, y + halfThumbHeight + 4);
+            drawDebugBox(x - 1 + textAreaWidth, y - 1, thumbWidth + 2, thumbHeight + 2, ofColor(255, 255, 255, 150));
+            draw(x + textAreaWidth, y, thumbWidth, thumbHeight);
         }
     }
 }

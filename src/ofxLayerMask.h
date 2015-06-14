@@ -37,6 +37,6 @@ private:
 
     bool overlayOn;
     int overlayPadding, doublePadding, overlayMargin;
-    int overlayWidth, overlayHeight, thumbWidth, thumbHeight;
+    int overlayWidth, overlayHeight, thumbWidth, thumbHeight, halfThumbHeight, textAreaWidth;
     int x, y;
 };
