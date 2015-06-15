@@ -36,8 +36,8 @@ void ofApp::draw(){
     //Draw layer #1
     masker.beginLayer(layer1);
     ofClear(0, 0, 0, 255);
-    ofSetColor(ofColor::blue, 160);
-    drawGrid(width, height, 25, 16);
+    ofSetColor(ofColor::blue);
+    drawGrid(width, height, 70, 50);
     ofSetColor(ofColor::wheat);
     masker.endLayer(layer1);
 
