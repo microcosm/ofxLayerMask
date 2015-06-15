@@ -80,6 +80,22 @@ void ofApp::draw() {
 }
 ```
 
+Using the overlay
+-----------------
+When you start working with multiple masks and layers it can quickly become confusing without visual feedback. While the examples are running, hit 'o' to get an overlay like this:
+
+![The overlay example](images/example-overlay.gif)
+
+To toggle the overlay in your own code, call the `toggleOverlay()` function:
+
+```cpp
+void ofApp::keyPressed(int key){
+    if(key == 'o') {
+        masker.toggleOverlay();
+    }
+}
+```
+
 Dependencies
 ------------
 The addon has no dependencies. Tested against [openFrameworks 0.8.4](http://openframeworks.cc/download/).
