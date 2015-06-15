@@ -31,14 +31,12 @@ void ofApp::draw(){
     ofTranslate(6, 6);
     ofSetColor(ofColor::red, 90);
     drawGrid(width, height, 50, 35);
-    ofSetColor(ofColor::wheat);
 
     //Draw layer #1
     masker.beginLayer(layer1);
     ofClear(0, 0, 0, 255);
     ofSetColor(ofColor::blue);
     drawGrid(width, height, 70, 50);
-    ofSetColor(ofColor::wheat);
     masker.endLayer(layer1);
 
     //Draw mask #1
@@ -53,7 +51,6 @@ void ofApp::draw(){
     ofClear(0, 0, 0, 255);
     ofSetColor(ofColor::green, 100);
     drawGrid(width, height, 35, 25);
-    ofSetColor(ofColor::wheat);
     masker.endLayer(layer2);
 
     //Draw mask #2
