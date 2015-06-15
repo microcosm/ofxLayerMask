@@ -79,8 +79,8 @@ void ofxLayerMask::drawOverlay() {
 
         //Draw composite thumbnail
         ofDrawBitmapString("Composite", x, y + halfThumbHeight + 4);
-        drawDebugBox(x - 1 + textAreaWidth + thumbWidth + overlayPadding, y - 1, thumbWidth + 2, thumbHeight + 2, ofColor(255, 255, 255, 150));
-        draw(x + textAreaWidth + thumbWidth + overlayPadding, y, thumbWidth, thumbHeight);
+        drawDebugBox(x - 1 + textAreaWidth + doubleThumbWidth + doublePadding, y - 1, thumbWidth + 2, thumbHeight + 2, ofColor(255, 255, 255, 150));
+        draw(x + textAreaWidth + doubleThumbWidth + doublePadding, y, thumbWidth, thumbHeight);
     }
 }
 
