@@ -1,5 +1,9 @@
 #include "ofxLayerMask.h"
 
+void ofxLayerMask::setup() {
+    setup(ofGetWidth(), ofGetHeight());
+}
+
 void ofxLayerMask::setup(int _width, int _height) {
     width = _width;
     height = _height;

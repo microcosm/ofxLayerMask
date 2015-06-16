@@ -5,6 +5,7 @@
 class ofxLayerMask {
 
 public:
+    void setup();
     void setup(int _width, int _height);
     void toggleOverlay();
     void setOverlayThumbSize(int _thumbSize);
