@@ -5,8 +5,8 @@
 class ofxLayerMask {
 
 public:
-    void setup();
-    void setup(int _width, int _height);
+    vector<int> setup(int numLayers=0);
+    vector<int> setup(int _width, int _height, int numLayers=0);
     void toggleOverlay();
     void setOverlayThumbSize(int _thumbSize);
     void draw();
@@ -19,6 +19,7 @@ public:
     void drawOverlay();
 
     int newLayer();
+    vector<int> newLayers(int numLayers);
     void beginMask();
     void beginMask(int _id);
     void endMask();

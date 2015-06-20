@@ -1,14 +1,14 @@
 #include "ofxLayerMask.h"
 
-void ofxLayerMask::setup() {
-    setup(ofGetWidth(), ofGetHeight());
+vector<int> ofxLayerMask::setup(int numLayers) {
+    return setup(ofGetWidth(), ofGetHeight(), numLayers);
 }
 
-void ofxLayerMask::setup(int _width, int _height) {
-    width = _width;
-    height = _height;
+vector<int> ofxLayerMask::setup(int _width, int _height, int numLayers) {
+    width = _width, height = _height;
     maskShader.load(shader("alphaMask"));
     setOverlayThumbSize(86);
+    return newLayers(numLayers);
 }
 
 void ofxLayerMask::toggleOverlay() {
@@ -94,6 +94,14 @@ int ofxLayerMask::newLayer() {
     layers.push_back(newFbo);
     initFbo(layers.back());
     return layers.size() - 1;
+}
+
+vector<int> ofxLayerMask::newLayers(int numLayers) {
+    vector<int> layerIds;
+    for(int i = 0; i < numLayers; i++) {
+        layerIds.push_back(newLayer());
+    }
+    return layerIds;
 }
 
 void ofxLayerMask::beginMask() {
