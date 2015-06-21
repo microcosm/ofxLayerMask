@@ -11,6 +11,14 @@ vector<int> ofxLayerMask::setup(int _width, int _height, int numLayers) {
     return newLayers(numLayers);
 }
 
+int ofxLayerMask::setupSingleLayer() {
+    return setup(1).at(0);
+}
+
+int ofxLayerMask::setupSingleLayer(int _width, int _height) {
+    return setup(_width, _height, 1).at(0);
+}
+
 void ofxLayerMask::toggleOverlay() {
     overlayOn = !overlayOn;
 }
