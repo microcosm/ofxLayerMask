@@ -9,6 +9,7 @@ varying vec2 texCoordVarying;
 void main()
 {
     vec3 src = texture2D(tex0, texCoordVarying).rgb;
+    float srcA = texture2D(tex0, texCoordVarying).a;
     float mask = texture2D(maskTex, texCoordVarying).r;
-    gl_FragColor = vec4(src , mask);
+    gl_FragColor = vec4(src , mask * srcA);
 }
