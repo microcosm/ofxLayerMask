@@ -144,6 +144,14 @@ void ofxLayerMask::endLayer(int _id) {
     layers.at(_id).end();
 }
 
+float ofxLayerMask::getWidth() {
+    return width;
+}
+
+float ofxLayerMask::getHeight() {
+    return height;
+}
+
 void ofxLayerMask::initOverlay() {
     overlayOn = false;
     overlayPadding = 20;

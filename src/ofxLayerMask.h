@@ -31,6 +31,9 @@ public:
     void endLayer();
     void endLayer(int _id);
 
+    float getWidth();
+    float getHeight();
+
 private:
     void initOverlay();
     void initFbo(ofFbo &fbo);
