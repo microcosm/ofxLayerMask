@@ -40,13 +40,14 @@ public:
 private:
     void initOverlay();
     void initFbo(ofFbo &fbo);
+    void initMaskFbo(ofFbo &fbo);
     string shader(string name);
     void drawDebugBox(int x, int y, int width, int height, ofColor color=ofColor(0, 0, 0, 150));
 
     int width, height;
     ofShader maskShader;
     vector<ofFbo> masks, layers;
-    ofFbo newFbo;
+    ofFbo newFbo, newMaskFbo;
 
     bool overlayOn;
     int thumbSize;

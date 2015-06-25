@@ -111,10 +111,10 @@ void ofxLayerMask::drawOverlay() {
 }
 
 int ofxLayerMask::newLayer() {
-    masks.push_back(newFbo);
-    initFbo(masks.back());
     layers.push_back(newFbo);
     initFbo(layers.back());
+    masks.push_back(newMaskFbo);
+    initMaskFbo(masks.back());
     return layers.size() - 1;
 }
 
@@ -186,7 +186,14 @@ void ofxLayerMask::initOverlay() {
 void ofxLayerMask::initFbo(ofFbo &fbo) {
     fbo.allocate(width, height, GL_RGBA);
     fbo.begin();
-    ofClear(0, 0, 0, 255);
+    ofBackground(ofColor(ofColor::black, 0));
+    fbo.end();
+}
+
+void ofxLayerMask::initMaskFbo(ofFbo &fbo) {
+    fbo.allocate(width, height, GL_RGB);
+    fbo.begin();
+    ofBackground(ofColor::white);
     fbo.end();
 }
 
