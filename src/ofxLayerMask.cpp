@@ -48,7 +48,7 @@ void ofxLayerMask::drawLayer(int layerId) {
 }
 
 void ofxLayerMask::drawLayer(int layerId, bool masked) {
-    drawLayer(layerId, x, y, width, height, masked);
+    drawLayer(layerId, 0, 0, width, height, masked);
 }
 
 void ofxLayerMask::drawLayer(int layerId, int x, int y) {
