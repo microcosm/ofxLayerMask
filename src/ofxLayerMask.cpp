@@ -146,12 +146,20 @@ void ofxLayerMask::endMask(int _id) {
     masks.at(_id).end();
 }
 
+void ofxLayerMask::begin() {
+    beginLayer();
+}
+
 void ofxLayerMask::beginLayer() {
     layers.back().begin();
 }
 
 void ofxLayerMask::beginLayer(int _id) {
     layers.at(_id).begin();
+}
+
+void ofxLayerMask::end() {
+    endLayer();
 }
 
 void ofxLayerMask::endLayer() {

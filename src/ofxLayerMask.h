@@ -30,8 +30,10 @@ public:
     void beginMask(int _id);
     void endMask();
     void endMask(int _id);
+    void begin();
     void beginLayer();
     void beginLayer(int _id);
+    void end();
     void endLayer();
     void endLayer(int _id);
 
