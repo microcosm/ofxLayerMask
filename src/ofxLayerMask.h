@@ -15,6 +15,7 @@ public:
     void draw(int x, int y);
     void draw(int x, int y, int _width, int _height);
     void drawLayer(int layerId);
+    void drawLayer(int layerId, bool masked);
     void drawLayer(int layerId, int x, int y);
     void drawLayer(int layerId, int x, int y, int _width, int _height, bool masked=true);
     void drawLayers(int fromId, int throughId);
