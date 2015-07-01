@@ -39,6 +39,7 @@ public:
 
     float getWidth();
     float getHeight();
+    int numLayers();
 
 private:
     void initOverlay();

@@ -178,6 +178,10 @@ float ofxLayerMask::getHeight() {
     return height;
 }
 
+int ofxLayerMask::numLayers() {
+    return layers.size();
+}
+
 void ofxLayerMask::initOverlay() {
     overlayOn = false;
     overlayPadding = 20;
