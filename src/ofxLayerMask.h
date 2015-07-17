@@ -2,11 +2,16 @@
 
 #include "ofMain.h"
 
+enum ofxLayerIsolation {
+    DO_NOT_ISOLATE_LAYERS,
+    ISOLATE_LAYERS
+};
+
 class ofxLayerMask {
 
 public:
-    vector<int> setup(int numLayers=0);
-    vector<int> setup(int _width, int _height, int numLayers=0);
+    vector<int> setup(int numLayers=0, ofxLayerIsolation isolation=DO_NOT_ISOLATE_LAYERS);
+    vector<int> setup(int _width, int _height, int numLayers=0, ofxLayerIsolation isolation=DO_NOT_ISOLATE_LAYERS);
     int setupSingleLayer();
     int setupSingleLayer(int _width, int _height);
     void toggleOverlay();
@@ -47,11 +52,14 @@ private:
     void initMaskFbo(ofFbo &fbo);
     string shader(string name);
     void drawDebugBox(int x, int y, int width, int height, ofColor color=ofColor(0, 0, 0, 150));
+    void beginLayerIsolation();
+    void endLayerIsolation();
 
     int width, height;
     ofShader maskShader;
     vector<ofFbo> masks, layers;
     ofFbo newFbo, newMaskFbo;
+    ofxLayerIsolation layerIsolation;
 
     bool overlayOn;
     int thumbSize;

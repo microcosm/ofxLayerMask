@@ -1,13 +1,14 @@
 #include "ofxLayerMask.h"
 
-vector<int> ofxLayerMask::setup(int numLayers) {
-    return setup(ofGetWidth(), ofGetHeight(), numLayers);
+vector<int> ofxLayerMask::setup(int numLayers, ofxLayerIsolation isolation) {
+    return setup(ofGetWidth(), ofGetHeight(), numLayers, isolation);
 }
 
-vector<int> ofxLayerMask::setup(int _width, int _height, int numLayers) {
+vector<int> ofxLayerMask::setup(int _width, int _height, int numLayers, ofxLayerIsolation isolation) {
     width = _width, height = _height;
     maskShader.load(shader("alphaMask"));
     setOverlayThumbSize(86);
+    layerIsolation = isolation;
     return newLayers(numLayers);
 }
 
@@ -151,10 +152,12 @@ void ofxLayerMask::begin() {
 }
 
 void ofxLayerMask::beginLayer() {
+    beginLayerIsolation();
     layers.back().begin();
 }
 
 void ofxLayerMask::beginLayer(int _id) {
+    beginLayerIsolation();
     layers.at(_id).begin();
 }
 
@@ -164,10 +167,12 @@ void ofxLayerMask::end() {
 
 void ofxLayerMask::endLayer() {
     layers.back().end();
+    endLayerIsolation();
 }
 
 void ofxLayerMask::endLayer(int _id) {
     layers.at(_id).end();
+    endLayerIsolation();
 }
 
 float ofxLayerMask::getWidth() {
@@ -235,4 +240,18 @@ void ofxLayerMask::drawDebugBox(int x, int y, int width, int height, ofColor col
     ofNoFill();
     ofRect(x, y, width, height);
     ofFill();
+}
+
+void ofxLayerMask::beginLayerIsolation() {
+    if(layerIsolation == ISOLATE_LAYERS) {
+        ofPushMatrix();
+        ofPushStyle();
+    }
+}
+
+void ofxLayerMask::endLayerIsolation() {
+    if(layerIsolation == ISOLATE_LAYERS) {
+        ofPopStyle();
+        ofPopMatrix();
+    }
 }
