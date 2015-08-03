@@ -29,18 +29,10 @@ void ofxLayerMask::setOverlayThumbSize(int _thumbSize) {
     initOverlay();
 }
 
-void ofxLayerMask::draw() {
-    draw(0, 0);
-}
-
-void ofxLayerMask::draw(int x, int y) {
-    draw(x, y, width, height);
-}
-
 void ofxLayerMask::draw(int x, int y, int _width, int _height) {
     ofSetColor(ofColor::white);
     for(int i = 0; i < layers.size(); i++) {
-        drawLayer(i, x, y, _width, _height);
+        drawLayer(i, x, y, validWidth(_width), validHeight(_height));
     }
 }
 

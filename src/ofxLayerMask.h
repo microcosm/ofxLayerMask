@@ -16,9 +16,7 @@ public:
     int setupSingleLayer(int _width, int _height);
     void toggleOverlay();
     void setOverlayThumbSize(int _thumbSize);
-    void draw();
-    void draw(int x, int y);
-    void draw(int x, int y, int _width, int _height);
+    void draw(int x=0, int y=0, int _width=-1, int _height=-1);
     void drawLayer(int layerId, bool masked);
     void drawLayer(int layerId, int x=0, int y=0, int _width=-1, int _height=-1, bool masked=true);
     void drawLayers(int fromId, int throughId, int x=0, int y=0, int _width=-1, int _height=-1, bool masked=true);
