@@ -82,7 +82,9 @@ void ofxLayerMask::drawLayers(int fromId, int throughId, int x, int y, int _widt
 }
 
 void ofxLayerMask::drawMask(int maskId, int x, int y, int _width, int _height) {
-    masks.at(maskId).draw(x, y, _width, _height);
+    masks.at(maskId).draw(x, y,
+        _width  >= 0 ? _width  : width,
+        _height >= 0 ? _height : height);
 }
 
 void ofxLayerMask::drawOverlay() {
