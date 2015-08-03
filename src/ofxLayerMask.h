@@ -21,9 +21,7 @@ public:
     void draw(int x, int y, int _width, int _height);
     void drawLayer(int layerId, bool masked);
     void drawLayer(int layerId, int x=0, int y=0, int _width=-1, int _height=-1, bool masked=true);
-    void drawLayers(int fromId, int throughId);
-    void drawLayers(int fromId, int throughId, int x, int y);
-    void drawLayers(int fromId, int throughId, int x, int y, int _width, int _height, bool masked=true);
+    void drawLayers(int fromId, int throughId, int x=0, int y=0, int _width=-1, int _height=-1, bool masked=true);
     void drawMask(int maskId, int x=0, int y=0, int _width=-1, int _height=-1);
     void drawOverlay();
 

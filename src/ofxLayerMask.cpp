@@ -59,17 +59,9 @@ void ofxLayerMask::drawLayer(int layerId, int x, int y, int _width, int _height,
     }
 }
 
-void ofxLayerMask::drawLayers(int fromId, int throughId) {
-    drawLayers(fromId, throughId, 0, 0);
-}
-
-void ofxLayerMask::drawLayers(int fromId, int throughId, int x, int y) {
-    drawLayers(fromId, throughId, x, y, width, height);
-}
-
 void ofxLayerMask::drawLayers(int fromId, int throughId, int x, int y, int _width, int _height, bool masked) {
     for(int i = fromId; i <= throughId; i++) {
-        drawLayer(i, x, y, _width, _height, masked);
+        drawLayer(i, x, y, validWidth(_width), validHeight(_height), masked);
     }
 }
 
