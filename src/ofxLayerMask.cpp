@@ -44,26 +44,18 @@ void ofxLayerMask::draw(int x, int y, int _width, int _height) {
     }
 }
 
-void ofxLayerMask::drawLayer(int layerId) {
-    drawLayer(layerId, 0, 0);
-}
-
 void ofxLayerMask::drawLayer(int layerId, bool masked) {
     drawLayer(layerId, 0, 0, width, height, masked);
-}
-
-void ofxLayerMask::drawLayer(int layerId, int x, int y) {
-    drawLayer(layerId, x, y, width, height);
 }
 
 void ofxLayerMask::drawLayer(int layerId, int x, int y, int _width, int _height, bool masked) {
     if(masked) {
         maskShader.begin();
         maskShader.setUniformTexture("maskTex", masks.at(layerId).getTextureReference(), 1);
-        layers.at(layerId).draw(x, y, _width, _height);
+        layers.at(layerId).draw(x, y, validWidth(_width), validHeight(_height));
         maskShader.end();
     } else {
-        layers.at(layerId).draw(x, y, _width, _height);
+        layers.at(layerId).draw(x, y, validWidth(_width), validHeight(_height));
     }
 }
 
@@ -82,9 +74,7 @@ void ofxLayerMask::drawLayers(int fromId, int throughId, int x, int y, int _widt
 }
 
 void ofxLayerMask::drawMask(int maskId, int x, int y, int _width, int _height) {
-    masks.at(maskId).draw(x, y,
-        _width  >= 0 ? _width  : width,
-        _height >= 0 ? _height : height);
+    masks.at(maskId).draw(x, y, validWidth(_width), validHeight(_height));
 }
 
 void ofxLayerMask::drawOverlay() {
@@ -256,4 +246,12 @@ void ofxLayerMask::endLayerIsolation() {
         ofPopStyle();
         ofPopMatrix();
     }
+}
+
+int ofxLayerMask::validWidth(int _width) {
+    return _width >= 0 ? _width : width;
+}
+
+int ofxLayerMask::validHeight(int _height) {
+    return _height >= 0 ? _height : height;
 }

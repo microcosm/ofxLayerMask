@@ -19,10 +19,8 @@ public:
     void draw();
     void draw(int x, int y);
     void draw(int x, int y, int _width, int _height);
-    void drawLayer(int layerId);
     void drawLayer(int layerId, bool masked);
-    void drawLayer(int layerId, int x, int y);
-    void drawLayer(int layerId, int x, int y, int _width, int _height, bool masked=true);
+    void drawLayer(int layerId, int x=0, int y=0, int _width=-1, int _height=-1, bool masked=true);
     void drawLayers(int fromId, int throughId);
     void drawLayers(int fromId, int throughId, int x, int y);
     void drawLayers(int fromId, int throughId, int x, int y, int _width, int _height, bool masked=true);
@@ -54,6 +52,8 @@ private:
     void drawDebugBox(int x, int y, int width, int height, ofColor color=ofColor(0, 0, 0, 150));
     void beginLayerIsolation();
     void endLayerIsolation();
+    int validWidth(int _width);
+    int validHeight(int _height);
 
     int width, height;
     ofShader maskShader;
