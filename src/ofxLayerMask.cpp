@@ -4,6 +4,10 @@ vector<int> ofxLayerMask::setup(int numLayers, ofxLayerIsolation isolation) {
     return setup(ofGetWidth(), ofGetHeight(), numLayers, isolation);
 }
 
+vector<int> ofxLayerMask::setup(ofVec2f size, int numLayers, ofxLayerIsolation isolation) {
+    return setup(size.x, size.y, numLayers, isolation);
+}
+
 vector<int> ofxLayerMask::setup(int _width, int _height, int numLayers, ofxLayerIsolation isolation) {
     width = _width, height = _height;
     maskShader.load(shader("alphaMask"));

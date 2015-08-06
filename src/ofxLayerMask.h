@@ -11,6 +11,7 @@ class ofxLayerMask {
 
 public:
     vector<int> setup(int numLayers=0, ofxLayerIsolation isolation=DO_NOT_ISOLATE_LAYERS);
+    vector<int> setup(ofVec2f size, int numLayers=0, ofxLayerIsolation isolation=DO_NOT_ISOLATE_LAYERS);
     vector<int> setup(int _width, int _height, int numLayers=0, ofxLayerIsolation isolation=DO_NOT_ISOLATE_LAYERS);
     int setupSingleLayer();
     int setupSingleLayer(int _width, int _height);
