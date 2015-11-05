@@ -39,6 +39,8 @@ apps/*
 *.cpp.eep
 *.cpp.elf
 *.cpp.hex
+*/bin/*
+!*/bin/data/*
 
 #########################
 # IDE
