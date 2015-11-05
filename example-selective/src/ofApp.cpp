@@ -84,7 +84,7 @@ void ofApp::drawGrid(int _width, int _height, float increment, float blockSize){
 }
 
 float ofApp::animate(float from, float to){
-    return ofMap(sin(ofGetFrameNum() * 0.02), -1, 1, from, to);
+    return ofMap(sin(ofGetElapsedTimeMicros() * 0.000001), -1, 1, from, to);
 }
 
 void ofApp::keyPressed(int key){

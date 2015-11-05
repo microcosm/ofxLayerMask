@@ -63,7 +63,7 @@ void ofApp::drawText(string text, int x, int marginY, int _height){
 }
 
 float ofApp::animate(float from, float to){
-    return ofMap(sin(ofGetFrameNum() * 0.02), -1, 1, from, to);
+    return ofMap(sin(ofGetElapsedTimeMicros() * 0.000001), -1, 1, from, to);
 }
 
 void ofApp::keyPressed(int key){
