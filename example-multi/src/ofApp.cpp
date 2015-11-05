@@ -13,6 +13,9 @@ void ofApp::setup(){
     layer2 = masker.newLayer();
 
     ofSetCircleResolution(60);
+    red = ofColor(90, 0, 0, 255);
+    green = ofColor(0, 100, 0, 255);
+    blue = ofColor(0, 0, 160, 255);
 }
 
 void ofApp::update(){
@@ -23,43 +26,51 @@ void ofApp::draw(){
     //Draw a background
     ofBackground(ofColor::black);
     ofTranslate(6, 6);
-    ofSetColor(ofColor::red, 90);
+    ofSetColor(red);
     drawGrid(width, height, 50, 35);
     ofSetColor(ofColor::wheat);
     drawText("This is the background", 30, 50, height);
 
     //Draw layer #1
     masker.beginLayer(layer1);
-    ofClear(0, 0, 0, 255);
-    ofSetColor(ofColor::blue, 160);
-    drawGrid(width, height, 25, 16);
-    ofSetColor(ofColor::wheat);
-    drawText("This is layer one", halfWidth, 50, height);
+    {
+        ofClear(0, 0, 0, 255);
+        ofSetColor(blue);
+        drawGrid(width, height, 25, 16);
+        ofSetColor(ofColor::wheat);
+        drawText("This is layer one", halfWidth, 50, height);
+    }
     masker.endLayer(layer1);
 
     //Draw mask #1
     masker.beginMask(layer1);
-    ofClear(0, 0, 0, 255);
-    ofSetColor(ofColor::white);
-    ofCircle(halfWidth, halfHeight, animate(30, 280));
+    {
+        ofClear(0, 0, 0, 255);
+        ofSetColor(ofColor::white);
+        ofCircle(halfWidth, halfHeight, animate(30, 280));
+    }
     masker.endMask(layer1);
 
     //Draw layer #2
     masker.beginLayer(layer2);
-    ofClear(0, 0, 0, 255);
-    ofSetColor(ofColor::green, 100);
-    drawGrid(width, height, 35, 25);
-    ofSetColor(ofColor::wheat);
-    drawText("And this is layer two", halfWidth, 50, height);
+    {
+        ofClear(0, 0, 0, 255);
+        ofSetColor(green);
+        drawGrid(width, height, 35, 25);
+        ofSetColor(ofColor::wheat);
+        drawText("And this is layer two", halfWidth, 50, height);
+    }
     masker.endLayer(layer2);
 
     //Draw mask #2
     masker.beginMask(layer2);
-    ofClear(0, 0, 0, 255);
-    ofSetColor(ofColor::white);
-    ofSetRectMode(OF_RECTMODE_CENTER);
-    ofRect(halfWidth, animate(height - 100, 100), 360, 120);
-    ofSetRectMode(OF_RECTMODE_CORNER);
+    {
+        ofClear(0, 0, 0, 255);
+        ofSetColor(ofColor::white);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        ofRect(halfWidth, animate(height - 100, 100), 360, 120);
+        ofSetRectMode(OF_RECTMODE_CORNER);
+    }
     masker.endMask(layer2);
 
     //Draw the combined result (and overlay when enabled - see keyPressed below)

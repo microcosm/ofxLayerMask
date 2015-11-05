@@ -24,6 +24,7 @@ public:
     void gotMessage(ofMessage msg);
     
     ofxLayerMask masker;
+    ofColor red, blue;
     int width, height, halfWidth, halfHeight;
     float diameter;
 };

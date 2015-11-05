@@ -12,6 +12,8 @@ void ofApp::setup(){
     masker.newLayer();
     
     ofSetCircleResolution(60);
+    red = ofColor(90, 0, 0, 255);
+    blue = ofColor(0, 0, 160, 255);
 }
 
 void ofApp::update(){
@@ -22,25 +24,29 @@ void ofApp::draw(){
     //Draw a background
     ofBackground(ofColor::black);
     ofTranslate(6, 6);
-    ofSetColor(ofColor::red, 90);
+    ofSetColor(red);
     drawGrid(width, height, 50, 35);
     ofSetColor(ofColor::wheat);
     drawText("This is the background", 30, 50, height);
 
     //Draw the layer
     masker.beginLayer();
-    ofClear(0, 0, 0, 255);
-    ofSetColor(ofColor::blue, 160);
-    drawGrid(width, height, 25, 16);
-    ofSetColor(ofColor::wheat);
-    drawText("This is layer one", halfWidth, 50, height);
+    {
+        ofClear(0, 0, 0, 255);
+        ofSetColor(blue);
+        drawGrid(width, height, 25, 16);
+        ofSetColor(ofColor::wheat);
+        drawText("This is layer one", halfWidth, 50, height);
+    }
     masker.endLayer();
 
     //Draw the mask
     masker.beginMask();
-    ofClear(0, 0, 0, 255);
-    ofSetColor(ofColor::white);
-    ofCircle(halfWidth, halfHeight, animate(30, 280));
+    {
+        ofClear(0, 0, 0, 255);
+        ofSetColor(ofColor::white);
+        ofCircle(halfWidth, halfHeight, animate(30, 280));
+    }
     masker.endMask();
 
     //Draw the combined result (and overlay when enabled - see keyPressed below)

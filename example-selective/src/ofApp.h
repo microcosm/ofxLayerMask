@@ -23,6 +23,7 @@ public:
     void gotMessage(ofMessage msg);
     
     ofxLayerMask masker;
+    ofColor red, green, blue;
     int width, height, halfWidth, halfHeight;
     int layer1, layer2;
     int layerToDraw;
