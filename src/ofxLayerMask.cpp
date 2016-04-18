@@ -184,15 +184,17 @@ void ofxLayerMask::initOverlay() {
     halfThumbHeight = thumbHeight * 0.5;
 }
 
+//https://forum.openframeworks.cc/t/anti-aliasing-on-offbo/11182/3
+
 void ofxLayerMask::initFbo(ofFbo &fbo) {
-    fbo.allocate(width, height, GL_RGBA);
+    fbo.allocate(width, height, GL_RGBA, 1);
     fbo.begin();
     ofBackground(ofColor(ofColor::black, 0));
     fbo.end();
 }
 
 void ofxLayerMask::initMaskFbo(ofFbo &fbo) {
-    fbo.allocate(width, height, GL_RGB);
+    fbo.allocate(width, height, GL_RGB, 1);
     fbo.begin();
     ofBackground(ofColor::white);
     fbo.end();
