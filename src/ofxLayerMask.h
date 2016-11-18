@@ -58,6 +58,7 @@ private:
     ofFbo newFbo, newMaskFbo;
     ofxLayerIsolation layerIsolation;
 
+    int numSamples;
     bool overlayOn;
     int thumbSize;
     int overlayPadding, doublePadding, triplePadding, quadruplePadding;

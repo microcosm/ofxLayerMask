@@ -13,6 +13,11 @@ vector<int> ofxLayerMask::setup(int _width, int _height, int numLayers, ofxLayer
     maskShader.load(shader("alphaMask"));
     setOverlayThumbSize(86);
     layerIsolation = isolation;
+#ifdef TARGET_OPENGLES
+    numSamples = 0;
+#else
+    numSamples = 1;
+#endif
     return newLayers(numLayers);
 }
 
@@ -187,14 +192,14 @@ void ofxLayerMask::initOverlay() {
 //https://forum.openframeworks.cc/t/anti-aliasing-on-offbo/11182/3
 
 void ofxLayerMask::initFbo(ofFbo &fbo) {
-    fbo.allocate(width, height, GL_RGBA, 1);
+    fbo.allocate(width, height, GL_RGBA, numSamples);
     fbo.begin();
     ofBackground(ofColor(ofColor::black, 0));
     fbo.end();
 }
 
 void ofxLayerMask::initMaskFbo(ofFbo &fbo) {
-    fbo.allocate(width, height, GL_RGB, 1);
+    fbo.allocate(width, height, GL_RGB, numSamples);
     fbo.begin();
     ofBackground(ofColor::white);
     fbo.end();
