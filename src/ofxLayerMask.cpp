@@ -52,7 +52,7 @@ void ofxLayerMask::drawLayer(int layerId, bool masked) {
 void ofxLayerMask::drawLayer(int layerId, int x, int y, int _width, int _height, bool masked) {
     if(masked) {
         maskShader.begin();
-        maskShader.setUniformTexture("maskTex", masks.at(layerId).getTextureReference(), 1);
+        maskShader.setUniformTexture("maskTex", masks.at(layerId).getTexture(), 1);
         layers.at(layerId).draw(x, y, validWidth(_width), validHeight(_height));
         maskShader.end();
     } else {
@@ -222,10 +222,10 @@ void ofxLayerMask::drawDebugBox(int x, int y, int width, int height, ofColor col
     ofSetLineWidth(1);
     ofSetColor(color);
     ofFill();
-    ofRect(x, y, width, height);
+    ofDrawRectangle(x, y, width, height);
     ofSetColor(ofColor::white);
     ofNoFill();
-    ofRect(x, y, width, height);
+    ofDrawRectangle(x, y, width, height);
     ofFill();
 }
 
