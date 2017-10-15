@@ -8,7 +8,7 @@ vector<int> ofxLayerMask::setup(ofVec2f size, int numLayers, ofxLayerIsolation i
     return setup(size.x, size.y, numLayers, isolation);
 }
 
-vector<int> ofxLayerMask::setup(int _width, int _height, int numLayers, ofxLayerIsolation isolation) {
+vector<int> ofxLayerMask::setup(int _width, int _height, int numLayers, ofxLayerIsolation isolation, int _numLayers) {
     width = _width, height = _height;
     maskShader.load(shader("alphaMask"));
     setOverlayThumbSize(86);
@@ -16,7 +16,7 @@ vector<int> ofxLayerMask::setup(int _width, int _height, int numLayers, ofxLayer
 #ifdef TARGET_OPENGLES
     numSamples = 0;
 #else
-    numSamples = 1;
+    numSamples = _numLayers;
 #endif
     return newLayers(numLayers);
 }
