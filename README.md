@@ -98,4 +98,4 @@ void ofApp::keyPressed(int key){
 
 Dependencies
 ------------
-The addon has no dependencies. Tested against [openFrameworks 0.8.4](http://openframeworks.cc/download/).
+The addon has no dependencies. Tested against [openFrameworks 0.10.0](http://openframeworks.cc/download/).
