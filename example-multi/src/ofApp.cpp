@@ -47,7 +47,7 @@ void ofApp::draw(){
     {
         ofClear(0, 0, 0, 255);
         ofSetColor(ofColor::white);
-        ofCircle(halfWidth, halfHeight, animate(30, 280));
+        ofDrawCircle(halfWidth, halfHeight, animate(30, 280));
     }
     masker.endMask(layer1);
 
@@ -68,7 +68,7 @@ void ofApp::draw(){
         ofClear(0, 0, 0, 255);
         ofSetColor(ofColor::white);
         ofSetRectMode(OF_RECTMODE_CENTER);
-        ofRect(halfWidth, animate(height - 100, 100), 360, 120);
+        ofDrawRectangle(halfWidth, animate(height - 100, 100), 360, 120);
         ofSetRectMode(OF_RECTMODE_CORNER);
     }
     masker.endMask(layer2);
@@ -81,7 +81,7 @@ void ofApp::draw(){
 void ofApp::drawGrid(int _width, int _height, float increment, float blockSize){
     for(int i = 0; i < _width; i+=increment) {
         for(int j = 0; j < _height; j+=increment) {
-            ofRect(i, j, blockSize, blockSize);
+            ofDrawRectangle(i, j, blockSize, blockSize);
         }
     }
 }
